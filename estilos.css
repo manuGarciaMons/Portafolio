@@ -71,3 +71,24 @@ header .categorias a {
 header .categorias a.activo{
   color: #000;
 }
+
+/* GRID */
+
+.grid{
+  position: relative;
+  width: 100%;
+
+}
+
+.grid .item{
+  position: absolute;
+  display: block;
+  padding: 0;
+  margin: 10px;
+  width: 33.33%;
+
+}
+
+.grid .item img {
+  width: 100%;
+}
