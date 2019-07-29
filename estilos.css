@@ -77,18 +77,29 @@ header .categorias a.activo{
 .grid{
   position: relative;
   width: 100%;
-
+  opacity: 0;
+  transition: opacity 0.5s linear 5s;
 }
+
 
 .grid .item{
   position: absolute;
   display: block;
   padding: 0;
   margin: 10px;
-  width: 33.33%;
+  width: calc(33.333333% - 20px);
 
 }
-
+.grid.imagenes-cargadas{
+  opacity: 1;
+  
+}
+.grid .item-contenido{
+  position: relative;
+}
 .grid .item img {
   width: 100%;
+  cursor: pointer;
+  vertical-align: top;
+
 }
