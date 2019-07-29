@@ -1,4 +1,3 @@
-// se usa la libreria muuri
 const grid = new Muuri('.grid', {
 	layout: {
 		rounding: false
@@ -7,36 +6,28 @@ const grid = new Muuri('.grid', {
 
 window.addEventListener('load', () => {
 	grid.refreshItems().layout();
-	document.getElementById('grid').classList.add('imagenes-cargadas'); //cargar las imagenes
+	document.getElementById('grid').classList.add('imagenes-cargadas');
 
-	// Agregar los listener de los enlaces para filtrar por categoria.
+	// Agregamos los listener de los enlaces para filtrar por categoria.
 	const enlaces = document.querySelectorAll('#categorias a');
-	enlaces.forEach((elemento) => { //funcion de tipo flecha  que itera los elementos de los enlaces
+	enlaces.forEach((elemento) => {
 		elemento.addEventListener('click', (evento) => {
-			evento.preventDefault(); // prevenir el comportamiento por defecto que tiene el navegador
-			enlaces.forEach((enlace) => enlace.classList.remove('activo')); //por cada enlace se accede a la lista de clases y eliminar activo
+			evento.preventDefault();
+			enlaces.forEach((enlace) => enlace.classList.remove('activo'));
 			evento.target.classList.add('activo');
 
-			const categoria = evento.target.innerHTML.toLowerCase(); //acceder al enlace clickeado trae todo en minusculas
-			categoria === 'todos' ? grid.filter('[data-categoria]') : grid.filter(`[data-categoria="${categoria}"]`); //filtrar elementos con la libreria sobre las categorias ya sea en todos o en una categoria especifica
+			const categoria = evento.target.innerHTML.toLowerCase();
+			categoria === 'todos' ? grid.filter('[data-categoria]') : grid.filter(`[data-categoria="${categoria}"]`);
 		});
 	});
 
-	// Agregar el listener para la barra de busqueda
-  //  cuando escriba una letra, una variable guarde lo que se escriba
-  // en la barra de buscar y saber si lo que se esta buscando corresponde
-  // a una etiqueta
+	// Agregamos el listener para la barra de busqueda
 	document.querySelector('#barra-busqueda').addEventListener('input', (evento) => {
 		const busqueda = evento.target.value;
-    //permitir mostrar todos los elementos si cumplen con la caracteristicas de las etiqueta y si las etiquetas
-    // pertenecen a una categoria
 		grid.filter( (item) => item.getElement().dataset.etiquetas.includes(busqueda) );
 	});
 
-	// Agregar listener para las imagenes
-  //cuando se presione en cualquiera de las imagenes se muestre else {
-    // overlay de la imagen seleccionada
-  }
+	// Agregamos listener para las imagenes
 	const overlay = document.getElementById('overlay');
 	document.querySelectorAll('.grid .item img').forEach((elemento) => {
 		elemento.addEventListener('click', () => {
